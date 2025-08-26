@@ -8,19 +8,11 @@ import (
 	"google.golang.org/protobuf/encoding/prototext"
 )
 
-func resolveJpkgFile(manifest string, lock string) string {
-	manifestAvailable := false
-	lockAvailable := false
-	if _, err := os.Stat(manifest); err == nil {
-		manifestAvailable = true
-	}
-	if _, err := os.Stat(lock); err == nil {
-		lockAvailable = true
-	}
-	if manifestAvailable && lockAvailable {
-		return lock
+func fileAvailable(path string) bool {
+	if _, err := os.Stat(path); err == nil {
+		return true
 	} else {
-		return manifest
+		return false
 	}
 }
 

@@ -11,5 +11,6 @@ message Repository {
 }
 
 message JpkgFile {
-  repeated Repository repositories = 1;
+  string directory = 1;
+  repeated Repository repositories = 2;
 }
