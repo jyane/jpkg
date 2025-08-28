@@ -104,7 +104,7 @@ func install() {
 		dirToInstall := path.Join(p.GetDirectory(), dir)
 		log.Printf("Cloning %s to %s", r.GetUrl(), dirToInstall)
 		hash, err := clone(dirToInstall, r.GetUrl())
-		if err != nil {
+		if err != nil && !errors.Is(err, git.ErrTargetDirNotEmpty) {
 			log.Fatalf("Failed to clone: %s, %v", r.GetUrl(), err)
 		}
 		if r.GetHash() == "" {
